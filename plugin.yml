@@ -1,0 +1,14 @@
+name: Masks
+version: 0.1
+description: Kill Players to get their mask! Disguise as the player by right clicking with the mask!
+author: bobacadodl
+main: com.github.bobacadodl.Masks.Masks
+depend: [DisguiseCraft]
+commands:
+  masks:
+    aliases: [disguises, mask]
+    description: Root plugin command
+permissions:
+  masks.get:
+    description: Allows you to get a players mask
+    default: op
