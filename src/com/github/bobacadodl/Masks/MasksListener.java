@@ -3,11 +3,13 @@ package com.github.bobacadodl.Masks;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -59,7 +61,15 @@ public class MasksListener implements Listener{
 			}
 		}
 	}
-	
+	public void onPlayerGetHurtEvent(EntityDamageByEntityEvent event){
+		if(event.getDamager().getType().equals(EntityType.PLAYER) && event.getEntityType().equals(EntityType.PLAYER)){
+			Player p = (Player) event.getEntity();
+			if(masks.dcAPI.isDisguised(p)){
+				masks.dcAPI.undisguisePlayer(p);
+				p.sendMessage("Your disguise has worn off!");
+			}
+		}
+	}
 	
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void onPlayerJoinEvent(PlayerJoinEvent event) {
