@@ -41,6 +41,7 @@ public class MasksMapRenderer extends MapRenderer{
             canvas.drawImage(32, 16, image);
         } catch (IOException e) {
         	e.printStackTrace();
+        	
         }
         
         canvas.drawText(8, 90, MinecraftFont.Font, pname);
